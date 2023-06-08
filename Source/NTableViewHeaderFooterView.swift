@@ -10,6 +10,10 @@ open class NTableViewHeaderFooterView: UITableViewHeaderFooterView {
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+
+    override open func awakeFromNib() {
+        super.awakeFromNib()
         commonSetup()
     }
 
