@@ -19,12 +19,21 @@
       }
     },
     {
+      "identity" : "nimble",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Quick/Nimble.git",
+      "state" : {
+        "revision" : "eb5e3d717224fa0d1f6aff3fc2c5e8e81fa1f728",
+        "version" : "11.2.2"
+      }
+    },
+    {
       "identity" : "nspry",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/NikSativa/NSpry.git",
       "state" : {
-        "revision" : "fb4b57b0d8f305bdc5e3a217c97d73d831ad2893",
-        "version" : "2.0.0"
+        "revision" : "1acbb548d09bff6643984359c86d77216f882bf4",
+        "version" : "1.3.4"
       }
     }
   ],

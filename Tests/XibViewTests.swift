@@ -12,8 +12,9 @@ final class XibViewTests: XCTestCase {
         XCTAssertNotNil(subject.xibView)
         XCTAssertNotNil(subject.xibView.label)
 
-        XCTAssertThrowsAssertion {
-            _ = XibViewWrongRoot()
-        }
+//        NSpry 2.0.0
+//        XCTAssertThrowsAssertion {
+//            _ = XibViewWrongRoot()
+//        }
     }
 }

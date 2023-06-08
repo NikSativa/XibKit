@@ -13,7 +13,7 @@ let package = Package(
         .library(name: "NXibViewTestHelpers", targets: ["NXibViewTestHelpers"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "2.0.0"))
+        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "1.3.4"))
     ],
     targets: [
         .target(name: "NXibView",
