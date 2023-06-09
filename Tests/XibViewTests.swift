@@ -7,14 +7,24 @@ import NXibViewTestHelpers
 
 final class XibViewTests: XCTestCase {
     func test_view() {
-        let subject: XibViewMain = .init()
-        XCTAssertNotNil(subject)
-        XCTAssertNotNil(subject.xibView)
-        XCTAssertNotNil(subject.xibView.label)
+        let main: XibViewMain = .init()
+        XCTAssertNotNil(main)
+        XCTAssertNotNil(main.xibView)
+        XCTAssertEqual(main.xibView.label.text, "overridden text")
 
-//        NSpry 2.0.0
-//        XCTAssertThrowsAssertion {
-//            _ = XibViewWrongRoot()
-//        }
+        let sub: XibViewSub = .init()
+        XCTAssertNotNil(sub)
+        XCTAssertEqual(sub.label.text, "original text")
+
+        XCTAssertThrowsAssertion {
+            _ = XibViewWrongRoot()
+        }
+    }
+
+    func test_controller() {
+        let story = UIStoryboard(name: "ViewController", bundle: .module)
+        let viewController = story.instantiateInitialViewController() as! ViewController
+        viewController.loadViewIfNeeded()
+        XCTAssertEqual(viewController.text, "TableViewCell")
     }
 }

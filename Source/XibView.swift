@@ -53,14 +53,25 @@ private extension Foundation.Bundle {
 }
 
 open class XibView: UIView {
+    private var inited: Bool = false
+    private var setuped: Bool = false
+
     public var isMainXibView: Bool {
         return internalView != nil
     }
 
     private var internalView: UIView!
 
-    open func initialSetup() {}
-    open func commonSetup() {}
+    /// setup before IBOutlets. use commonSetup for outlets
+    open func initialSetup() {
+        assert(inited == false)
+        inited = true
+    }
+
+    open func commonSetup() {
+        assert(setuped == false)
+        setuped = true
+    }
 
     private static func loadView(withFilesOwner filesOwner: XibView) -> XibView {
         let classType: UIView.Type = type(of: filesOwner)
