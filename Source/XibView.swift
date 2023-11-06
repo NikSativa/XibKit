@@ -1,57 +1,5 @@
 import UIKit
 
-private extension Foundation.Bundle {
-    struct Info {
-        let bundle: Bundle
-        let nibName: String
-    }
-
-    static func module(for className: AnyClass) -> Info {
-        let candidates: [URL] = {
-            var candidates: [Bundle] = []
-            candidates += Bundle.allBundles
-            candidates += [
-                Bundle.main,
-                Bundle(for: className)
-            ]
-
-            return candidates.flatMap { bundle in
-                return [
-                    bundle.resourceURL, // Bundle should be present here when the package is linked into an App.
-                    bundle.resourceURL?.deletingLastPathComponent(), // Bundle should be present here when the package is linked into a framework.
-                    bundle.bundleURL, // For command-line tools.
-                    bundle.bundleURL.deletingLastPathComponent() // Bundle should be present here when the package is linked into a framework.
-                ].compactMap {
-                    return $0
-                }
-            }
-        }()
-
-        let reflection = String(reflecting: className).components(separatedBy: ".")
-        let bundleNames = [
-            ["NHelpers", reflection[0]],
-            [reflection[0], reflection[0]],
-            [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil), reflection[0]],
-            [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil) + "-ios", reflection[0]]
-        ].map {
-            return $0.joined(separator: "_") + ".bundle"
-        }
-
-        for bundleName in bundleNames {
-            for candidate in candidates {
-                let bundlePath = candidate.appendingPathComponent(bundleName)
-                if let bundle = Bundle(url: bundlePath) {
-                    return .init(bundle: bundle,
-                                 nibName: reflection[1])
-                }
-            }
-        }
-
-        return .init(bundle: .main,
-                     nibName: reflection[1])
-    }
-}
-
 open class XibView: UIView {
     private var inited: Bool = false
     private var setuped: Bool = false
@@ -128,5 +76,57 @@ open class XibView: UIView {
             }
             super.preservesSuperviewLayoutMargins = newValue
         }
+    }
+}
+
+private extension Foundation.Bundle {
+    struct Info {
+        let bundle: Bundle
+        let nibName: String
+    }
+
+    static func module(for className: AnyClass) -> Info {
+        let candidates: [URL] = {
+            var candidates: [Bundle] = []
+            candidates += Bundle.allBundles
+            candidates += [
+                Bundle.main,
+                Bundle(for: className)
+            ]
+
+            return candidates.flatMap { bundle in
+                return [
+                    bundle.resourceURL, // Bundle should be present here when the package is linked into an App.
+                    bundle.resourceURL?.deletingLastPathComponent(), // Bundle should be present here when the package is linked into a framework.
+                    bundle.bundleURL, // For command-line tools.
+                    bundle.bundleURL.deletingLastPathComponent() // Bundle should be present here when the package is linked into a framework.
+                ].compactMap {
+                    return $0
+                }
+            }
+        }()
+
+        let reflection = String(reflecting: className).components(separatedBy: ".")
+        let bundleNames = [
+            ["NHelpers", reflection[0]],
+            [reflection[0], reflection[0]],
+            [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil), reflection[0]],
+            [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil) + "-ios", reflection[0]]
+        ].map {
+            return $0.joined(separator: "_") + ".bundle"
+        }
+
+        for bundleName in bundleNames {
+            for candidate in candidates {
+                let bundlePath = candidate.appendingPathComponent(bundleName)
+                if let bundle = Bundle(url: bundlePath) {
+                    return .init(bundle: bundle,
+                                 nibName: reflection[1])
+                }
+            }
+        }
+
+        return .init(bundle: .main,
+                     nibName: reflection[1])
     }
 }

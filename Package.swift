@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "NHelpers",
+    name: "NXibView",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_15)
@@ -13,7 +13,7 @@ let package = Package(
         .library(name: "NXibViewTestHelpers", targets: ["NXibViewTestHelpers"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "2.1.0"))
+        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "2.1.2"))
     ],
     targets: [
         .target(name: "NXibView",
