@@ -13,19 +13,25 @@ let package = Package(
         .library(name: "NXibViewTestHelpers", targets: ["NXibViewTestHelpers"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "2.1.2"))
+        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "2.1.4"))
     ],
     targets: [
         .target(name: "NXibView",
                 dependencies: [
                 ],
-                path: "Source"),
+                path: "Source",
+                resources: [
+                    .copy("../PrivacyInfo.xcprivacy")
+                ]),
         .target(name: "NXibViewTestHelpers",
                 dependencies: [
                     "NXibView",
                     "NSpry"
                 ],
-                path: "TestHelpers"),
+                path: "TestHelpers",
+                resources: [
+                    .copy("../PrivacyInfo.xcprivacy")
+                ]),
         .testTarget(name: "NXibViewTests",
                     dependencies: [
                         "NSpry",
