@@ -3,40 +3,40 @@
 import PackageDescription
 
 let package = Package(
-    name: "NXibView",
+    name: "XibKit",
     platforms: [
         .iOS(.v13),
         .macOS(.v10_15)
     ],
     products: [
-        .library(name: "NXibView", targets: ["NXibView"]),
-        .library(name: "NXibViewTestHelpers", targets: ["NXibViewTestHelpers"])
+        .library(name: "XibKit", targets: ["XibKit"]),
+        .library(name: "XibKitTestHelpers", targets: ["XibKitTestHelpers"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/NSpry.git", .upToNextMajor(from: "2.1.4"))
+        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "2.2.0"))
     ],
     targets: [
-        .target(name: "NXibView",
+        .target(name: "XibKit",
                 dependencies: [
                 ],
                 path: "Source",
                 resources: [
                     .copy("../PrivacyInfo.xcprivacy")
                 ]),
-        .target(name: "NXibViewTestHelpers",
+        .target(name: "XibKitTestHelpers",
                 dependencies: [
-                    "NXibView",
-                    "NSpry"
+                    "XibKit",
+                    "SpryKit"
                 ],
                 path: "TestHelpers",
                 resources: [
                     .copy("../PrivacyInfo.xcprivacy")
                 ]),
-        .testTarget(name: "NXibViewTests",
+        .testTarget(name: "XibKitTests",
                     dependencies: [
-                        "NSpry",
-                        "NXibView",
-                        "NXibViewTestHelpers"
+                        "SpryKit",
+                        "XibKit",
+                        "XibKitTestHelpers"
                     ],
                     path: "Tests")
     ]

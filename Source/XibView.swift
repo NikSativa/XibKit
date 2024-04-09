@@ -4,7 +4,7 @@ open class XibView: UIView {
     private var inited: Bool = false
     private var setuped: Bool = false
 
-    public var isMainXibView: Bool {
+    public var isMaiXibKit: Bool {
         return internalView != nil
     }
 
@@ -108,7 +108,7 @@ private extension Foundation.Bundle {
 
         let reflection = String(reflecting: className).components(separatedBy: ".")
         let bundleNames = [
-            ["NHelpers", reflection[0]],
+            ["XibKit", reflection[0]],
             [reflection[0], reflection[0]],
             [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil), reflection[0]],
             [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil) + "-ios", reflection[0]]

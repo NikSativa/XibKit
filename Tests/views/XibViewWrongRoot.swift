@@ -1,3 +1,3 @@
-import NXibView
+import XibKit
 
 final class XibViewWrongRoot: XibView {}

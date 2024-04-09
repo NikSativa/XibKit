@@ -1,5 +1,5 @@
 import Foundation
-import NXibView
+import XibKit
 
 final class XibViewMain: XibView {
     @IBOutlet weak var xibView: XibViewSub!

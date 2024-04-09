@@ -1,5 +1,5 @@
 import Foundation
-import NXibView
+import XibKit
 
 final class TableViewCell: NTableViewCell {
     @IBOutlet weak var sub: XibViewSub!

@@ -1,9 +1,9 @@
 import Foundation
-import NSpry
+import SpryKit
 import XCTest
 
-import NXibView
-import NXibViewTestHelpers
+import XibKit
+import XibKitTestHelpers
 
 final class XibViewTests: XCTestCase {
     func test_view() {

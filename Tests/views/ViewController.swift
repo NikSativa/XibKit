@@ -1,6 +1,6 @@
 import Foundation
-import NXibView
 import UIKit
+import XibKit
 
 final class ViewController: NViewController {
     private let cellId: String = "cellId"
