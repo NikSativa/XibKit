@@ -9,8 +9,7 @@ let package = Package(
         .macOS(.v10_15)
     ],
     products: [
-        .library(name: "XibKit", targets: ["XibKit"]),
-        .library(name: "XibKitTestHelpers", targets: ["XibKitTestHelpers"])
+        .library(name: "XibKit", targets: ["XibKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "2.2.0"))
@@ -23,20 +22,10 @@ let package = Package(
                 resources: [
                     .copy("../PrivacyInfo.xcprivacy")
                 ]),
-        .target(name: "XibKitTestHelpers",
-                dependencies: [
-                    "XibKit",
-                    "SpryKit"
-                ],
-                path: "TestHelpers",
-                resources: [
-                    .copy("../PrivacyInfo.xcprivacy")
-                ]),
         .testTarget(name: "XibKitTests",
                     dependencies: [
                         "SpryKit",
-                        "XibKit",
-                        "XibKitTestHelpers"
+                        "XibKit"
                     ],
                     path: "Tests")
     ]
