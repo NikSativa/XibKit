@@ -1,4 +1,6 @@
 # XibKit
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FNikSativa%2FXibKit%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/NikSativa/XibKit)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FNikSativa%2FXibKit%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/NikSativa/XibKit)
 
 This library provides a way to create views from `xib` files. It's useful when you need to create a custom view with a complex hierarchy of subviews.
 
