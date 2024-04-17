@@ -86,43 +86,20 @@ private extension Foundation.Bundle {
     }
 
     static func module(for className: AnyClass) -> Info {
-        let candidates: [URL] = {
-            var candidates: [Bundle] = []
-            candidates += Bundle.allBundles
-            candidates += [
-                Bundle.main,
-                Bundle(for: className)
-            ]
-
-            return candidates.flatMap { bundle in
-                return [
-                    bundle.resourceURL, // Bundle should be present here when the package is linked into an App.
-                    bundle.resourceURL?.deletingLastPathComponent(), // Bundle should be present here when the package is linked into a framework.
-                    bundle.bundleURL, // For command-line tools.
-                    bundle.bundleURL.deletingLastPathComponent() // Bundle should be present here when the package is linked into a framework.
-                ].compactMap {
-                    return $0
-                }
-            }
-        }()
-
         let reflection = String(reflecting: className).components(separatedBy: ".")
-        let bundleNames = [
-            ["XibKit", reflection[0]],
-            [reflection[0], reflection[0]],
-            [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil), reflection[0]],
-            [reflection[0].replacingOccurrences(of: "Tests", with: "", options: .backwards, range: nil) + "-ios", reflection[0]]
-        ].map {
-            return $0.joined(separator: "_") + ".bundle"
-        }
+        let packageName = reflection[0]
+        for bundle in Bundle.allBundles {
+            if bundle.bundleURL.pathExtension != "bundle" {
+                continue
+            }
 
-        for bundleName in bundleNames {
-            for candidate in candidates {
-                let bundlePath = candidate.appendingPathComponent(bundleName)
-                if let bundle = Bundle(url: bundlePath) {
-                    return .init(bundle: bundle,
-                                 nibName: reflection[1])
-                }
+            let bundleName = bundle.bundleURL.deletingPathExtension().lastPathComponent
+            let nameComponents = String(reflecting: bundleName)
+                .replacingOccurrences(of: "\"", with: "")
+                .components(separatedBy: "_")
+            if nameComponents.count >= 2, packageName == nameComponents[1] {
+                return .init(bundle: bundle,
+                             nibName: reflection[1])
             }
         }
 
