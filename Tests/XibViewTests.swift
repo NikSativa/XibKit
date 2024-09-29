@@ -3,6 +3,7 @@ import SpryKit
 import XCTest
 import XibKit
 
+@MainActor
 final class XibViewTests: XCTestCase {
     func test_view() {
         let main: XibViewMain = .init()

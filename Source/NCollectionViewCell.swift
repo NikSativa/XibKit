@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 open class NCollectionViewCell: UICollectionViewCell {
     private var inited: Bool = false
     private var setuped: Bool = false
@@ -17,7 +18,9 @@ open class NCollectionViewCell: UICollectionViewCell {
 
     override open func awakeFromNib() {
         super.awakeFromNib()
-        commonSetup()
+        syncMain {
+            commonSetup()
+        }
     }
 
     /// setup before IBOutlets. use commonSetup for outlets

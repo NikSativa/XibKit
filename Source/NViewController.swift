@@ -1,5 +1,6 @@
 import UIKit
 
+@MainActor
 open class NViewController: UIViewController {
     private var inited: Bool = false
     private var setuped: Bool = false
