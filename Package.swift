@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "XibKit", targets: ["XibKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMajor(from: "3.0.0"))
+        .package(url: "https://github.com/NikSativa/SpryKit.git", .upToNextMinor(from: "3.0.2"))
     ],
     targets: [
         .target(name: "XibKit",
