@@ -5,7 +5,8 @@ import XibKit
 final class ViewController: NViewController {
     private let cellId: String = "cellId"
 
-    @IBOutlet var tableView: UITableView! {
+    @IBOutlet
+    var tableView: UITableView! {
         didSet {
             let nib = UINib(nibName: "TableViewCell", bundle: .module)
             tableView.register(nib, forCellReuseIdentifier: cellId)
