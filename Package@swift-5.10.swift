@@ -1,17 +1,17 @@
-// swift-tools-version:5.9
+// swift-tools-version:5.10
 // swiftformat:disable all
 import PackageDescription
 
 let package = Package(
     name: "XibKit",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v16)
     ],
     products: [
         .library(name: "XibKit", targets: ["XibKit"])
     ],
     dependencies: [
-        .package(url: "https://github.com/NikSativa/SpryKit.git", from: "3.0.4")
+        .package(url: "https://github.com/NikSativa/SpryKit.git", from: "3.1.0")
     ],
     targets: [
         .target(name: "XibKit",
