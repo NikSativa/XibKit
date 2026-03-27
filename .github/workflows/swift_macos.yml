@@ -1,0 +1,27 @@
+name: "NikSativa CI"
+
+on:
+  push:
+    branches:
+      - "main"
+      - $default-branch
+    paths:
+      - ".github/workflows/**"
+      - "Package.swift"
+      - "Source/**"
+      - "Tests/**"
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "Package.swift"
+      - "Source/**"
+      - "Tests/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    uses: NikSativa/.github/.github/workflows/swift_macos_reusable.yml@main
+    secrets: inherit
